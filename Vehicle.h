@@ -25,6 +25,9 @@ class Vehicle
         /* Pure virtual returns the propulsion type, Gas or Electric. */
         virtual std::string GetPropulsionType() const = 0;
 
+        /* Range on a full tank or charge, in miles */
+        virtual double GetRangeMiles() const = 0;
+
         /* Prints the fields common to all vehicles: year, make, model, color and propulsion type.
          * Derived classes override this method to append their own fields.
          * Example:
