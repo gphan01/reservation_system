@@ -10,6 +10,10 @@
 /* Owns the fleet of cars, the current date, and all reservations.
  * All reservation rules are enforced here, no other code modifies the reservations
  * directly
+ *
+ * Example:
+ *      Database db;
+ *      db.AddVehicle(std::make_unique<GasCar>("Honda, "Civic". "White", 2020, 35.0));
  */
 class Database
 {
