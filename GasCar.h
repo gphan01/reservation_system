@@ -18,10 +18,16 @@ class GasCar : public Vehicle
 {
 public:
     GasCar(const std::string& make, const std::string& model,
-               const std::string& color, int year, double mpg);
+               const std::string& color, int year, double fuelCapacity, double effieciency);
+
+    /* Fuel tank capacity in gallons." */
+    double GetFuelCapacity() const;
 
     /* Fuel efficiency in miles per gallon */
-    double GetMpg() const;
+    double GetFuelEfficiency() const;
+
+    /* Range on a full tank, in miles: fuel capacity * effiency */
+    double GetRangeMiles() const override;
 
     /* Returns "Gas" */
     std::string GetPropulsionType() const override;
@@ -30,7 +36,8 @@ public:
     void Print(std::ostream& os) const override;
 
 private:
-    double mpg;
+    double fuelCapacity;
+    double efficiency;
 };
 
 #endif
