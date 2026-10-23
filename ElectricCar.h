@@ -19,10 +19,10 @@ class ElectricCar : public Vehicle
 {
 public:
     ElectricCar(const std::string& make, const std::string& model, const std::string& color,
-                int year, int energyCapacity, double efficiency);
+                int year, double energyCapacity, double efficiency);
 
     /* Battery energy capacity in kWh */
-    int GetEnergyCapacity() const;
+    double GetEnergyCapacity() const;
 
     /* Efficiency in miles per kWh */
     double GetEfficiency() const;
