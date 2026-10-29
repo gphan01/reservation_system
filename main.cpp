@@ -26,23 +26,24 @@ bool LoadInventory(const string& path, Database& db)
     if (!in)
         return false;
  
-    string make, model, type;
+    string make, model, type, color;
     int year;
     double capacity, efficiency;
  
     // Reads one car at a time. Stops at the end of the file
-    while (in >> make >> model >> year >> type >> capacity >> efficiency)
+    while (in >> make >> model >> color >> year >> type >> capacity >> efficiency)
     {
         // Underscores in the file become spaces, so Model_3 is stored as Model 3
         replace(make.begin(), make.end(), '_', ' ');
         replace(model.begin(), model.end(), '_', ' ');
+        replace(color.begin(), color.end(), '_', ' ');
  
         // Gas Vehicle, Unknown is the color because it isn't included in the file
         if (type == "Gas")
-            db.AddVehicle(make_unique<GasCar>(make, model, "Unknown", year, capacity, efficiency));
+            db.AddVehicle(make_unique<GasCar>(make, model, color, year, capacity, efficiency));
         // Electric Vehicle
-        else if (type == "EV")
-            db.AddVehicle(make_unique<ElectricCar>(make, model, "Unknown", year, capacity, efficiency));
+        else if (type == "Electric")
+            db.AddVehicle(make_unique<ElectricCar>(make, model, color, year, capacity, efficiency));
         else
             cout << "Skipping " << make << " " << model << ": unknown type " << type << '\n';
     }
@@ -52,7 +53,7 @@ bool LoadInventory(const string& path, Database& db)
 // Prompts the user on what to search by and what to search for, then prints every matching result
 void Search(const Database& db)
 {
-    cout << "Search by: 1 Make, 2 Model, 3 Propulsion (Gas/EV), 4 Color, 5 Year: ";
+    cout << "Search by: 1 Make, 2 Model, 3 Propulsion (Gas/Electric), 4 Color, 5 Year: ";
     int choice;
     cin >> choice;
  
